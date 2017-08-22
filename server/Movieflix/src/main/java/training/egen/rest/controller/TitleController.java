@@ -62,10 +62,10 @@ public class TitleController {
 		return service.sortByYear(userName);
 	}
 	
-	@RequestMapping(method=RequestMethod.GET, path="Title/SortByGenre", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public List<Title> sortByGenre(@PathVariable("id1") String userName)
+	@RequestMapping(method=RequestMethod.GET, path="Title/SortByVotes", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public List<Title> sortByVotes(@PathVariable("id1") String userName)
 	{
-		return service.sortByGenre(userName);
+		return service.sortByVotes(userName);
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, path="TopMovies", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)

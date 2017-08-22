@@ -137,9 +137,9 @@ public class TitleServiceImp implements TitleService{
 	}
 
 	@Override
-	public List<Title> sortByGenre(String userName) {
+	public List<Title> sortByVotes(String userName) {
 		findByNameCheck(userName);
-		return repository.sortByGenre();
+		return repository.sortByVotes();
 	}
 
 	@Override

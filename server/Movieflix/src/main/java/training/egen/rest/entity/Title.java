@@ -22,7 +22,7 @@ import training.egen.rest.exception.InvalidRequestException;
 	@NamedQuery(name="Title.findByGenre", query="SELECT m from Title m WHERE m.genre=:pGenre"),
 	@NamedQuery(name="Title.sortByRatings", query="SELECT m from Title m order by m.imdbRatings DESC"),
 	@NamedQuery(name="Title.sortByYear", query="SELECT m from Title m order by m.year DESC"),
-	@NamedQuery(name="Title.sortByGenre", query="SELECT m from Title m order by m.genre DESC"),
+	@NamedQuery(name="Title.sortByVotes", query="SELECT m from Title m order by m.imdbVotes DESC"),
 	@NamedQuery(name="Title.topTitle", query="SELECT m from Title m WHERE LOWER(m.type)=:pType order by m.imdbRatings DESC"),
 	@NamedQuery(name="Title.freeSearch", query="SELECT m from Title m WHERE LOWER(CONCAT(m.titleId,m.name,m.imdbRatings,"
 			+ "m.type,m.year,m.genre,m.imdbVotes,m.director,m.actors,m.plot)) LIKE LOWER(:pString)"),

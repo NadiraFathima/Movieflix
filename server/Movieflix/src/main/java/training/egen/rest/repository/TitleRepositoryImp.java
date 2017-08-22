@@ -44,6 +44,7 @@ public class TitleRepositoryImp implements TitleRepository {
 		
 	}
 	
+	@Override
 	public List<Title> findByGenre(String genre) {
 		TypedQuery<Title> query=em.createNamedQuery("Title.findByGenre",Title.class);
 		query.setParameter("pGenre",genre);
@@ -51,20 +52,23 @@ public class TitleRepositoryImp implements TitleRepository {
 		
 	}
 	
+	@Override
 	public List<Title> sortByRatings() {
 		TypedQuery<Title> query=em.createNamedQuery("Title.sortByRatings",Title.class);
 		return query.getResultList();
 		
 	}
 	
+	@Override
 	public List<Title> sortByYear() {
 		TypedQuery<Title> query=em.createNamedQuery("Title.sortByYear",Title.class);
 		return query.getResultList();
 		
 	}
 	
-	public List<Title> sortByGenre() {
-		TypedQuery<Title> query=em.createNamedQuery("Title.sortByGenre",Title.class);
+	@Override
+	public List<Title> sortByVotes() {
+		TypedQuery<Title> query=em.createNamedQuery("Title.sortByVotes",Title.class);
 		return query.getResultList();
 		
 	}

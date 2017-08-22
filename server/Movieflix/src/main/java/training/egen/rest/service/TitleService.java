@@ -15,7 +15,7 @@ public interface TitleService {
 	public int findavgratings(String titleId,String userName);
 	public List<Title> sortByRatings(String userName);
 	public List<Title> sortByYear(String userName);
-	public List<Title> sortByGenre(String userName);
+	public List<Title> sortByVotes(String userName);
 	public Title create(Title mov,String adminName);
 	public Title update(String titleId, Title mov,String adminName);
 	public void delete(String titleId,String adminName);

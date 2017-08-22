@@ -12,7 +12,7 @@ public interface TitleRepository {
 	public List<Title> findByGenre(String genre);
 	public List<Title> sortByRatings();
 	public List<Title> sortByYear();
-	public List<Title> sortByGenre();
+	public List<Title> sortByVotes();
 	public int findavgratings(String titleId);
 	public Title findOne(String titleId);
 	public Title create(Title mov);
