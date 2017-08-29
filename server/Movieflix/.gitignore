@@ -14,3 +14,4 @@
 **/RemoteSystemsTempFiles
 
 **/target/*
+/target/

@@ -23,8 +23,8 @@ public class RatingsCommentsRepositoryImp implements RatingsCommentsRepository {
 		return query.getSingleResult();
 	}
 	
-	public List<String> findComments(String titleId) {
-		TypedQuery<String> query=em.createNamedQuery("RatingsComments.findComments",String.class);
+	public List<RatingsComments> findComments(String titleId) {
+		TypedQuery<RatingsComments> query=em.createNamedQuery("RatingsComments.findComments",RatingsComments.class);
 		query.setParameter("pMovieId",titleId);
 		return query.getResultList();		
 	}

@@ -20,35 +20,16 @@ public class TitleServiceImp implements TitleService{
 	TitleRepository repository;
 	
 	@Autowired
-	UsersRepository urepository;
-	
-	public Users adminPrivilegeCheck(String adminName)
-	{
-		Users existing=findByNameCheck(adminName);
-		if(!(existing.getPrivilege()).equalsIgnoreCase("Admin"))	
-			throw new RuntimeException("This user doesnot have admin privileges.");
-		return existing;	
-	}
-	
-	public Users findByNameCheck(String userName)
-	{
-		Users existing=urepository.findByName(userName);
-		if(existing==null)
-		{
-			throw new NotFoundException("This user is not registered to Movieflix :" + userName);
-		}
-		return existing;
-	}
 	
 	@Override
-	public List<Title> findAll(String userName) {
-		findByNameCheck(userName);
+	public List<Title> findAll() {
+
 		return repository.findAll();
 	}
 
 	@Override
-	public Title findOne(String titleId,String userName) {
-		findByNameCheck(userName);
+	public Title findOne(String titleId) {
+		
 		Title existing=repository.findOne(titleId);
 		if(existing==null)
 		{
@@ -59,16 +40,16 @@ public class TitleServiceImp implements TitleService{
 
 	@Override
 	@Transactional
-	public Title create(Title mov,String adminName) {
-		adminPrivilegeCheck(adminName);
+	public Title create(Title mov) {
+		
 		return repository.create(mov);
 	}
 
 	@Override
 	@Transactional
-	public Title update(String titleId, Title mov,String adminName) {
+	public Title update(String titleId, Title mov) {
 		
-		adminPrivilegeCheck(adminName);
+		
 		
 		Title existing=repository.findOne(titleId);
 		if(existing==null)
@@ -80,9 +61,9 @@ public class TitleServiceImp implements TitleService{
 
 	@Override
 	@Transactional
-	public void delete(String titleId,String adminName) {
+	public void delete(String titleId) {
 		
-		adminPrivilegeCheck(adminName);		
+			
 		Title existing=repository.findOne(titleId);
 		if(existing==null)
 		{
@@ -92,8 +73,8 @@ public class TitleServiceImp implements TitleService{
 	}
 
 	@Override
-	public List<Title> findByYear(String year,String userName) {
-		findByNameCheck(userName);
+	public List<Title> findByYear(String year) {
+		
 		List<Title> existing=repository.findByYear(year);
 		if(existing==null)
 		{
@@ -103,8 +84,8 @@ public class TitleServiceImp implements TitleService{
 	}
 
 	@Override
-	public List<Title> findByType(String type,String userName) {
-		findByNameCheck(userName);
+	public List<Title> findByType(String type) {
+		
 		List<Title> existing=repository.findByType(type);
 		if(existing==null)
 		{
@@ -114,8 +95,8 @@ public class TitleServiceImp implements TitleService{
 	}
 
 	@Override
-	public List<Title> findByGenre(String genre,String userName) {
-		findByNameCheck(userName);
+	public List<Title> findByGenre(String genre) {
+		
 		List<Title> existing=repository.findByGenre(genre);
 		if(existing==null)
 		{
@@ -125,39 +106,36 @@ public class TitleServiceImp implements TitleService{
 	}
 
 	@Override
-	public List<Title> sortByRatings(String userName) {
-		findByNameCheck(userName);
+	public List<Title> sortByRatings() {
+	
 		return repository.sortByRatings();
 	}
 
 	@Override
-	public List<Title> sortByYear(String userName) {
-		findByNameCheck(userName);
+	public List<Title> sortByYear() {
 		return repository.sortByYear();
 	}
 
 	@Override
-	public List<Title> sortByVotes(String userName) {
-		findByNameCheck(userName);
+	public List<Title> sortByVotes() {
 		return repository.sortByVotes();
 	}
 
 	@Override
-	public int findavgratings(String titleId,String userName) {
-		findByNameCheck(userName);
+	public int findavgratings(String titleId) {
 		return repository.findavgratings(titleId);
 		
 	}
 
 	@Override
-	public List<Title> freeSearch(String searchVar,String userName) {
-		findByNameCheck(userName);
+	public List<Title> freeSearch(String searchVar) {
+		
 		return repository.freeSearch(searchVar);
 	}
 
 	@Override
-	public List<Title> topRated(String movietv, String userName) {
-		findByNameCheck(userName);
+	public List<Title> topRated(String movietv) {
+		
 		List<Title> existing=repository.topTitle(movietv);
 		if(existing==null)
 		{

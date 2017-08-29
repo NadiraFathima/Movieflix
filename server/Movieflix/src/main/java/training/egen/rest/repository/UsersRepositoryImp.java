@@ -38,15 +38,31 @@ public class UsersRepositoryImp implements UsersRepository {
 	}
 
 	@Override
-	public Users findByName(String userName) {
+	public boolean findByName(String userName, String password) {
 		TypedQuery<Users> query=em.createNamedQuery("Users.findByName",Users.class);
 		query.setParameter("pUserName",userName);
 		
-		List<Users> user=query.getResultList();
-		if (user != null && user.size() == 1) {
-			return user.get(0);
+		Users user=query.getSingleResult();
+			if(user.getPassword().equals(password)) {
+			System.out.println("get password"+user.getPassword());
+			System.out.println("entered password"+password);
+				return true;
+			}
+		return false;
+	}
+	
+	public List<Users> CheckuserName(String userName) {
+
+		TypedQuery<Users> query=em.createNamedQuery("Users.findByName",Users.class);
+		query.setParameter("pUserName",userName);
+		
+		List<Users> resultList=query.getResultList();
+        
+		if (resultList != null && resultList.size()==1) {
+			return resultList;
 		}
-		return null;
+		else 
+			return null;
 	}
 
 }

@@ -1,6 +1,7 @@
 package training.egen.rest.entity;
 
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -21,7 +22,7 @@ public class Users {
 	@GeneratedValue(generator="customUUID")
 	private String userId;
 
-	
+	@Column(unique=true)
 	private String userName;
 	
 	

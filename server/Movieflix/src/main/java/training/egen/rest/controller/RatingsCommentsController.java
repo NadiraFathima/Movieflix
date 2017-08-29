@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,9 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import training.egen.rest.entity.RatingsComments;
 import training.egen.rest.service.RatingsCommentsService;
 
-@RestController 
-
-@RequestMapping(path="{id1}")
+@RestController
+@CrossOrigin(origins = "*")
 public class RatingsCommentsController {
 
 	@Autowired
@@ -28,7 +28,7 @@ public class RatingsCommentsController {
 	}
 	
 	@RequestMapping(method=RequestMethod.GET,path="{id}/Comments", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public List<String> findComments(@PathVariable("id") String titleId)
+	public List<RatingsComments> findComments(@PathVariable("id") String titleId)
 	{
 		return service.findComments(titleId);
 	}

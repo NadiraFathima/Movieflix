@@ -29,7 +29,7 @@ public class RatingsCommentsServiceImp implements RatingsCommentsService{
 		return repository.create(r);
 	}
 
-	public List<String> findComments(String titleId)
+	public List<RatingsComments> findComments(String titleId)
 	{
 		return repository.findComments(titleId);
 	}

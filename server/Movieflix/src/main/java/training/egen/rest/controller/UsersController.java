@@ -2,6 +2,7 @@ package training.egen.rest.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import training.egen.rest.entity.Users;
 import training.egen.rest.service.UsersService;
-
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(path="/Users")
 public class UsersController {
@@ -29,6 +30,15 @@ public class UsersController {
 	public Users findOne(@PathVariable("id") String userId)
 	{
 		return service.findOne(userId);
+	}
+	
+	@RequestMapping(method=RequestMethod.POST, path="userName/{id}",produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public boolean findByName(@PathVariable("id") String userName, @RequestBody String password)
+	{
+		System.out.println("password"+password+"Username"+userName);
+		boolean suc=service.findByName(userName, password);
+		System.out.println(suc);
+		return suc;
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, path="{id}", produces=MediaType.APPLICATION_JSON_UTF8_VALUE, consumes=MediaType.APPLICATION_JSON_UTF8_VALUE)

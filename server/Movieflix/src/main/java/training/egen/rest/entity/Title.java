@@ -2,6 +2,7 @@ package training.egen.rest.entity;
 
 
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -37,15 +38,16 @@ public class Title {
 	private String titleId;
 	
 	private String name;
-	private int imdbRatings;
+	private float imdbRatings;
 	
 	private String type;
 	
-	private int year;
+	private String year;
 	private String genre;
 	private int imdbVotes;
 	private String director;
 	private String actors;
+	
 	private String plot;
 	
 	
@@ -57,6 +59,18 @@ public class Title {
 	
 	
 	
+	public String getTitleId() {
+		return titleId;
+	}
+
+
+
+	public void setTitleId(String titleId) {
+		this.titleId = titleId;
+	}
+
+
+
 	public String getName() {
 		return name;
 	}
@@ -72,10 +86,10 @@ public class Title {
 		this.titleId = titleId;
 	}
 	
-	public int getImdbRatings() {
+	public float getImdbRatings() {
 		return imdbRatings;
 	}
-	public void setImdbRatings(int imdbRatings) {
+	public void setImdbRatings(float imdbRatings) {
 		this.imdbRatings = imdbRatings;
 	}
 	public String getType() {
@@ -87,10 +101,10 @@ public class Title {
 		else
 			throw new InvalidRequestException("Type of the title should be movies or tvseries");
 	}
-	public int getYear() {
+	public String getYear() {
 		return year;
 	}
-	public void setYear(int year) {
+	public void setYear(String year) {
 		this.year = year;
 	}
 	public String getGenre() {

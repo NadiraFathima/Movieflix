@@ -1,0 +1,40 @@
+
+.table{
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 5%;
+}
+h2, i{
+  white-space: pre;
+  color: #4CAF50;
+  text-align: center;
+}
+.form-group{
+  margin-left: 10%;
+  margin-right: 60%;
+}
+.comment{
+  margin-left: 10%;
+  margin-right: 30%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.btn-primary{
+  background-color: #4CAF50;
+}
+span{
+  color: #4CAF50;
+}
+.table,body{
+  margin-left: 10%;
+  width:80%;
+  background-color: aliceblue;
+  border-radius: 10px;
+  padding-left: 1px;
+}
+
+.error{
+  color: red;
+  padding-left: 1px;
+  margin-left: 10%;
+}

@@ -3,6 +3,8 @@ package training.egen.rest.service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,7 +23,7 @@ public class UsersServiceImp implements UsersService{
 	@Override
 	@Transactional
 	public Users create(Users user) {
-		Users existing=repository.findByName(user.getUserName());
+		List<Users> existing=repository.CheckuserName(user.getUserName());
 		
 		if(existing!=null)
 		{
@@ -70,5 +72,12 @@ public class UsersServiceImp implements UsersService{
 		}
 	repository.delete(existing);
 	}
+
+	@Override
+	public boolean findByName(String userName, String password) {
+		return repository.findByName(userName, password);
+	}
+	
+	
 
 }

@@ -1,6 +1,7 @@
 package training.egen.rest.entity;
 
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,13 +16,14 @@ import org.hibernate.annotations.GenericGenerator;
 @Table
 @NamedQueries({
 @NamedQuery(name = "RatingsComments.findAvgRatings", query = "select avg(r.ratings) from RatingsComments r where r.title.titleId = :pMovieId"),
-@NamedQuery(name = "RatingsComments.findComments", query = "select c.comments from RatingsComments c where c.title.titleId = :pMovieId")})
+@NamedQuery(name = "RatingsComments.findComments", query = "select c from RatingsComments c where c.title.titleId = :pMovieId")})
 public class RatingsComments {
 
 	@Id
 	@GenericGenerator(name = "customUUID", strategy = "uuid2")
 	@GeneratedValue(generator="customUUID")
 	private String ratcomId;
+	private String userName;
 	private int ratings;
 	
 	private String comments;
@@ -31,6 +33,12 @@ public class RatingsComments {
 	
 	public String getRatcomId() {
 		return ratcomId;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	public void setRatcomId(String ratcomId) {
 		this.ratcomId = ratcomId;
