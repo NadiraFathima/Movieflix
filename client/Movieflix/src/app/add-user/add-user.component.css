@@ -62,7 +62,7 @@ h1, input {
 }
 
 .inputButton {
-  position: relative;
+  position:relative;
   width: 85%;
   height: 50px;
   display: block;
@@ -91,4 +91,11 @@ h1, input {
 .error p {
   color: red;
   margin-left: 10%;
+}
+
+.card{
+  border-color: tomato;
+  border-radius: 2px;
+  padding: 7px;
+  background-color: #FAEBD7;
 }

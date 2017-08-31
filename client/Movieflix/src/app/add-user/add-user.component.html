@@ -22,9 +22,26 @@
           <p [hidden]="userPassword.value==userRepeatPassword.value">Passwords don't match!</p>
         </div>
         <input type="submit" value="Sign up" [disabled]="!userForm.valid" class="inputButton"/>
+        <div *ngIf="errorval==='adderror'">
+          <div class="card">
+            <div class="card-block">
+              User Name already exists! Try another one.
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="errorval==='addsuccess'">
+          <div class="card">
+            <div class="card-block">
+              Registration Successful. Login to continue.
+            </div>
+          </div>
+        </div>
       </form>
     </div>
   </div>
+
+
   <!--col-md-6-->
 
   <div class="col-md-6">
@@ -34,8 +51,12 @@
         <input name="userName1" required="required" #userName1="ngModel"  [(ngModel)]="login.userName" type="text" placeholder="enter your username" class="input pass"/>
         <input name="Password1" type="password" #Password1="ngModel"  [(ngModel)]="login.password" required="required" placeholder="enter your password" class="input pass"/>
         <input type="submit" value="Sign in" class="inputButton"/>
-        <div class="text-center">
-          <a href="#" id="">forgot password</a>
+        <div *ngIf="errorval==='geterror'">
+          <div class="card">
+            <div class="card-block">
+            User name or password incorrect. Try again!
+            </div>
+          </div>
         </div>
       </form>
     </div>

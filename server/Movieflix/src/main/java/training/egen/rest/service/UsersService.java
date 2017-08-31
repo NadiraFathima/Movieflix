@@ -7,7 +7,7 @@ public interface UsersService {
 
 	public Users update(String userId,Users user);
 	public Users findOne(String userId);
-	public boolean findByName(String userName, String password);
+	public String findByName(String userName, String password);
 	public void delete(String userId);
 	public Users create(Users user);
 

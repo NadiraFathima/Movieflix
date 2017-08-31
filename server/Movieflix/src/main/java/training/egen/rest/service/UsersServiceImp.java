@@ -74,7 +74,7 @@ public class UsersServiceImp implements UsersService{
 	}
 
 	@Override
-	public boolean findByName(String userName, String password) {
+	public String findByName(String userName, String password) {
 		return repository.findByName(userName, password);
 	}
 	

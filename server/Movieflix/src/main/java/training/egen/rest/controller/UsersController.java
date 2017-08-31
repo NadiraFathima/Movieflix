@@ -33,10 +33,10 @@ public class UsersController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, path="userName/{id}",produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public boolean findByName(@PathVariable("id") String userName, @RequestBody String password)
+	public String findByName(@PathVariable("id") String userName, @RequestBody String password)
 	{
 		System.out.println("password"+password+"Username"+userName);
-		boolean suc=service.findByName(userName, password);
+		String suc=service.findByName(userName, password);
 		System.out.println(suc);
 		return suc;
 	}

@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 import training.egen.rest.entity.Users;
+import training.egen.rest.exception.NotFoundException;
 
 @Repository
 public class UsersRepositoryImp implements UsersRepository {
@@ -38,7 +39,7 @@ public class UsersRepositoryImp implements UsersRepository {
 	}
 
 	@Override
-	public boolean findByName(String userName, String password) {
+	public String findByName(String userName, String password) {
 		TypedQuery<Users> query=em.createNamedQuery("Users.findByName",Users.class);
 		query.setParameter("pUserName",userName);
 		
@@ -46,9 +47,11 @@ public class UsersRepositoryImp implements UsersRepository {
 			if(user.getPassword().equals(password)) {
 			System.out.println("get password"+user.getPassword());
 			System.out.println("entered password"+password);
-				return true;
+				String username="{\"username\": \""+user.getUserName()+"\"}";
+				System.out.println(username);
+				return username;
 			}
-		return false;
+			throw new NotFoundException("Invalid user");
 	}
 	
 	public List<Users> CheckuserName(String userName) {

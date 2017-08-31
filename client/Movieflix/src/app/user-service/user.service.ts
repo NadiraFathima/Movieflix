@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Http} from '@angular/http';
+import {Http, RequestOptions, Headers, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -14,7 +14,7 @@ export class UserService {
     // let headers = new Headers({'Authorization': 'asdfasdfasdfasd'});
     // let options = new RequestOptions({headers: headers});
 
-    return this.http.post('http://localhost:8080/Movieflix/api/Users', user)
+    return this.http.post('http://localhost:8080/Movieflix/api/Users', user, this.jwt())
       .map(response => response.json())
       .catch(error => Observable.throw(error.statusText));
   }
@@ -22,9 +22,17 @@ export class UserService {
     // let headers = new Headers({'Authorization': 'asdfasdfasdfasd'});
     // let options = new RequestOptions({headers: headers});
 
-    return this.http.post(`http://localhost:8080/Movieflix/api/Users/userName/${userName}`, password)
+    return this.http.post(`http://localhost:8080/Movieflix/api/Users/userName/${userName}`, password, this.jwt())
       .map(response => response.json())
       .catch((error) => Observable.throw(error.statusText));
   }
 
+  private jwt() {
+    // create authorization header with jwt token
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (currentUser && currentUser.token) {
+      let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
+      return new RequestOptions({headers: headers});
+    }
+  }
 }

@@ -673,7 +673,7 @@ a.expander:hover, a.expander:focus {
   display:-webkit-flex;
   display:-ms-flexbox;
   display:flex;
-  border: #6d6d6d;
+  border-color: #6d6d6d;
   border: solid;
   font: bold 12px Arial,Helvetica,Sans-serif;
   color: white;
@@ -927,11 +927,19 @@ pass:-webkit-autofill {
 }
 select{
   border-radius: 10px;
-  background-color: #4CAF50;
-  color: white;
+  border-color: #4CAF50;
+  color: #4CAF50;
   padding: 3px;
 }
 input{
   border-radius: 10px;
   padding: 2px;
+}
+
+.btn .btn-outline-success{
+  margin-left: 20%;
+  margin-right: 20%;
+
+
+
 }

@@ -4,6 +4,8 @@ import {Router} from '@angular/router';
 import {FormControl, Validators} from '@angular/forms';
 
 
+
+
 @Component({
   selector: 'app-edit-title',
   templateUrl: './edit-title.component.html',
@@ -24,8 +26,9 @@ export class EditTitleComponent implements OnInit {
     plot: null
 
   };
-  check;
+  check= 'add';
   checkdet;
+  success;
 
   add() {
     this.check = 'add';
@@ -53,33 +56,48 @@ export class EditTitleComponent implements OnInit {
   addTitle() {
     this.titleService.addTitle(this.title)
       .subscribe(title => {
-        console.log(title);
-      });
+          this.success = 'added';
+        },
+        error => {
+          this.success = 'failedadd';
+        });
   }
   deleteTitle() {
+    this.success = 'deleted';
     this.titleService.deleteTitle(this.title.titleId)
       .subscribe(title => {
-        console.log(title);
-      });
+
+        });
+
   }
   updateTitle() {
     this.titleService.updateTitle(this.title)
       .subscribe(title => {
-        console.log(title);
-      });
+          this.success = 'updated';
+        },
+        error => {
+          this.success = 'failedupdate';
+        });
+
   }
   displayTitle() {
     this.titleService.displayTitle(this.title)
       .subscribe(title => {
-        console.log(title);
-      });
+          this.success = 'displayed';
+        },
+        error => {
+          this.success = 'faileddisplay';
+        });
   }
   getOneTitle() {
     this.titleService.getOneTitle(this.title.titleId)
       .subscribe(title => {
-        console.log(title);
-      });
+        this.title = title;
+          this.success = 'gottitle';
+
+        },
+        error => {
+          this.success = 'failedgettitle';
+        });
   }
-
-
 }

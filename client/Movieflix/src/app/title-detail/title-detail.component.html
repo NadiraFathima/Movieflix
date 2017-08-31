@@ -6,11 +6,13 @@
 <!--Navigation bar-->
 <div class="navbar">
   <ul>
-    <li><a a [routerLink]="['/Title']">Home</a></li>
-    <li style="float:right"><a href="login.html">SignOut</a></li>
+    <li><a [routerLink]="['/Title']" class="active" (click)="home()" >Home</a></li>
+    <li *ngIf="access===true"><a [routerLink]="['/modify-Title']" >Edit Titles</a></li>
+    <li style="float:right"><a [routerLink]="['/login']">SignOut</a></li>
   </ul>
 
 </div>
+
 
 <hr>
 <body>
@@ -19,7 +21,7 @@
     <br>
     <tr><h2>{{title.name}} ({{title.year}}) - {{title.genre}} {{title.type}}</h2></tr>
     <hr>
-    <tr><span>id:</span> {{title.titleId}}</tr>
+    <tr><span>Title Id:</span> {{title.titleId}}</tr>
     <tr><span>IMDB Ratings:</span> {{title.imdbRatings}}</tr>
     <tr><span>IMDB Votes:</span> {{title.imdbVotes}}</tr>
     <tr><span>Director:</span>{{title.director}}</tr>
@@ -30,7 +32,7 @@
     <tr>{{title.plot}}</tr>
 
   </table>
-  <form name="title-addform" #userForm="ngForm">
+  <form name="title-addform" #userForm1="ngForm">
       <div class="form-group">
       <input type="text" required class="form-control" #userName="ngModel" required [(ngModel)]="comments.userName" name="userName" id="userName" placeholder="Enter User Name" >
       </div>
@@ -48,7 +50,7 @@
 
     <table class="table">
 
-      <tr><button type="button" class="btn btn-primary" (click)="addRatcom()" [disabled]="!userForm1.valid" >Send</button></tr>
+      <tr><button type="button" class="btn btn-primary" (click)="addRatcom()" [disabled]="!userForm1.valid"  >Send</button></tr>
       <br>
 
       <tr><button type="button" class="btn btn-primary" (click)="displayavgRat()"> Other Users Ratings and Comments</button></tr>

@@ -1,16 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../user-service/user.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import { AlertService, AuthenticationService } from '../_services/index';
 
 @Component({
+  moduleId: module.id,
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
   styleUrls: ['./add-user.component.css']
 })
-export class AddUserComponent {
+export class AddUserComponent implements OnInit {
 
   check= false;
-  error;
+  loading = false;
+  returnUrl: string;
+  errorval;
   user = {
     userName: null,
     privilege: 'user',
@@ -22,23 +26,46 @@ export class AddUserComponent {
     password: null,
   };
 
-  constructor(private userService: UserService, private router: Router ) { }
+  ngOnInit() {
+    // reset login status
+    this.authenticationService.logout();
+
+    // get return url from route parameters or default to '/'
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+  }
+
+  constructor(private userService: UserService,
+              private route: ActivatedRoute,
+              private router: Router,
+              private authenticationService: AuthenticationService,
+              private alertService: AlertService) { }
 
     addUser() {
+      this.loading = true;
       this.userService.addUser(this.user)
         .subscribe(user => {
-          console.log(user);
-          this.router.navigate(['/users']);
-        });
+          this.errorval = 'addsuccess';
+          this.alertService.success('Registration successful.Login to continue', true);
+          this.router.navigate(['/login']);
+        },
+          error => {
+            this.errorval = 'adderror';
+            this.alertService.error(error);
+            this.loading = false;
+          });
     }
   getUser() {
-    this.userService.getUser(this.login.userName, this.login.password)
-      .subscribe(login => {this.check = login;
-        console.log(`the boolean value is ${this.check}`); },
-        error => console.log(error));
-      this.router.navigate(['/Title']);
-
+    this.loading = true;
+    this.authenticationService.login(this.login.userName, this.login.password)
+      .subscribe(login => {
+        this.router.navigate(['/Title']);
+        },
+        error => { this.errorval = 'geterror';
+           this.alertService.error(error);
+    this.loading = false; });
 
   }
+
+
 
 }

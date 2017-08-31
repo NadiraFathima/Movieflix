@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {TitleService} from '../Title-service/title.service';
 import {ActivatedRoute} from '@angular/router';
+import {TitleComponent} from '../Title/title.component';
+
 
 @Component({
   selector: 'app-title-detail',
@@ -8,7 +10,9 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./title-detail.component.css']
 })
 
-export class TitleDetailComponent{
+export class TitleDetailComponent implements OnInit{
+
+  access= false;
   title= {
     titleId: null,
     name: null,
@@ -29,17 +33,43 @@ export class TitleDetailComponent{
     titleId: null
   }
 avgRatings;
-
+  topMoviesRes;
+  topTVRes;
 display;
   constructor(private route: ActivatedRoute, private titleService: TitleService) {
-    this.route.params.subscribe(params => {
-      titleService.getOneTitle(params.id)
-        .subscribe(title => {this.title = title; console.log(title); });
-  });
 
 }
 
-  displayavgRat() {
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.titleService.getOneTitle(params.id)
+        .subscribe(title => {this.title = title; });
+    });
+    if (localStorage.getItem('adminUser')) {
+      this.access = true;
+    }
+  }
+
+
+  home() {
+  this.display = 'home';
+  }
+
+  topMovies() {
+  this.display = 'topm';
+    this.titleService.topMovies()
+      .subscribe(topMoviesRes => {
+        this.topMoviesRes = topMoviesRes; console.log(topMoviesRes);
+      });
+  }
+  topTV() {
+    this.display = 'topt';
+    this.titleService.topTV()
+      .subscribe(topTVRes => {
+        this.topTVRes = topTVRes; console.log(topTVRes);
+      });
+  }
+   displayavgRat() {
     this.titleService.displayavgRat(this.title.titleId)
       .subscribe(avgRatings => {
         this.avgRatings = JSON.stringify(avgRatings); console.log(avgRatings);

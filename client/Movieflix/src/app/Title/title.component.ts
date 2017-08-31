@@ -9,7 +9,9 @@ import {Http} from '@angular/http';
   templateUrl: './title.component.html',
   styleUrls: ['./title.component.css']
 })
-export class TitleComponent {
+export class TitleComponent implements OnInit {
+
+  access= false;
   title= {
     titleId: null,
     name: null,
@@ -56,13 +58,22 @@ display = 'home';
 
 
 constructor(private titleService: TitleService, private router: Router, private http: Http) {
-    titleService.getAllTitle()
+
+  }
+
+  ngOnInit(): void {
+
+    this.titleService.getAllTitle()
       .subscribe(
         titles => {this.titles = titles; console.log(titles); },
         error => console.log(error)
 
       );
-  }
+    if (localStorage.getItem('adminUser')) {
+      this.access = true;
+    }  }
+
+
 
   sortfunction(var1) {
     if (var1 === 'ratings') {
@@ -146,5 +157,12 @@ constructor(private titleService: TitleService, private router: Router, private 
       .subscribe(topTVRes => {
         this.topTVRes = topTVRes; console.log(topTVRes);
       });
+  }
+
+  modifyAccess() {
+    if (localStorage.getItem('adminUser')) {
+      this.access = true;
+    }
+
   }
   }

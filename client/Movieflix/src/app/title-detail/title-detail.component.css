@@ -1,3 +1,78 @@
+.navbar
+{
+
+  padding: 0;
+  height:50px;
+
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  top: 0;
+  width: 100%;
+
+
+}
+
+
+.navbar li {
+  float: left;
+}
+
+.navbar li:last-child {
+  border-right: none;
+}
+
+.navbar li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navbar li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.navbar .active {
+  background-color: #4CAF50;
+}
+.navbar li #search {
+  padding-top: 5%;
+
+}
+
+.navbar li #search input[type="text"] {
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:-ms-flexbox;
+  display:flex;
+  border: #6d6d6d;
+  border: solid;
+  font: bold 12px Arial,Helvetica,Sans-serif;
+  color: white;
+  background-color: #333;
+  width: 150px;
+  height: 30px;
+  padding: 14px 16px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-transition: all 0.7s ease 0s;
+  -moz-transition: all 0.7s ease 0s;
+  -o-transition: all 0.7s ease 0s;
+  transition: all 0.7s ease 0s;
+}
+
+.navbar li #search input[type="text"]:focus {
+  width: 150px;
+
+}
 
 .table{
   margin-left: 10%;
@@ -20,7 +95,13 @@ h2, i{
   margin-bottom: 10px;
 }
 .btn-primary{
-  background-color: #4CAF50;
+  border-color: #4CAF50;
+  background: transparent;
+  color: black;
+}
+
+.btn-primary:disabled {
+  background-color: gray;
 }
 span{
   color: #4CAF50;

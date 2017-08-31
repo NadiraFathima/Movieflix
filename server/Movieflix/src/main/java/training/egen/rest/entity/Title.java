@@ -19,8 +19,8 @@ import training.egen.rest.exception.InvalidRequestException;
 @NamedQueries({
 	@NamedQuery(name="Title.findAll", query="SELECT m from Title m order by m.year DESC"),
 	@NamedQuery(name="Title.findByYear", query="SELECT m from Title m WHERE m.year=:pYear"),
-	@NamedQuery(name="Title.findByType", query="SELECT m from Title m WHERE m.type=:pType"),
-	@NamedQuery(name="Title.findByGenre", query="SELECT m from Title m WHERE m.genre=:pGenre"),
+	@NamedQuery(name="Title.findByType", query="SELECT m from Title m WHERE m.type = :pType"),
+	@NamedQuery(name="Title.findByGenre", query="SELECT m from Title m WHERE m.genre = :pGenre"),
 	@NamedQuery(name="Title.sortByRatings", query="SELECT m from Title m order by m.imdbRatings DESC"),
 	@NamedQuery(name="Title.sortByYear", query="SELECT m from Title m order by m.year DESC"),
 	@NamedQuery(name="Title.sortByVotes", query="SELECT m from Title m order by m.imdbVotes DESC"),
